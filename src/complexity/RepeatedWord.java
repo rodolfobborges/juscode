@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class RepeatedWord {
 
     private static final Logger logger = Logger.getGlobal();
+    private static long operations;
 
     /**
      * if text "dog banana orange boat dog" return "dog"
@@ -20,14 +21,14 @@ public class RepeatedWord {
     public static String getMostRepeatedWord3(String text) {
         String[] words = text.split(" ");
         Map<String, Integer> map = new HashMap<>(words.length);
-        int operations = 0;
+        operations = 0;
 
         for (String word : words) {
             operations++;
             map.put(word, map.getOrDefault(word, 0) + 1);
         }
 
-        logger.log(Level.INFO, "Total Operations => {0}", Integer.toString(operations));
+        logger.log(Level.INFO, "Total Operations => {0}", Long.toString(operations));
         return Collections.max(map.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
     }
 
@@ -42,7 +43,7 @@ public class RepeatedWord {
         String lastWord = "";
         int wordMatches = 0;
         int maxMatches = 0;
-        int operations = 0;
+        operations = 0;
 
         Arrays.sort(words);
         operations++;
@@ -51,25 +52,25 @@ public class RepeatedWord {
             operations++;
 
             if (words[i].equals(lastWord)) {
+                operations++;
                 wordMatches++;
 
                 if (wordMatches > maxMatches) {
+                    operations++;
                     maxMatches = wordMatches;
                     wordMoreMatched = lastWord;
                 }
                 continue;
             }
 
-            operations++;
-
             if (i+1 < words.length
                     && Arrays.binarySearch(words, i+1, words.length-1, words[i]) != -1) {
+                operations++;
                 wordMatches = 1;
                 lastWord = words[i];
             }
         }
-
-        logger.log(Level.INFO, "Total Operations => {0}", Integer.toString(operations));
+        logger.log(Level.INFO, "Total Operations => {0}", Long.toString(operations));
         return wordMoreMatched;
     }
 
@@ -84,28 +85,27 @@ public class RepeatedWord {
         String wordMoreMatched = "";
         int wordMatches = 0;
         int maxMatches = 0;
-        int operations = 0;
+        operations = 0;
 
         for (String word : words) {
-
+            operations++;
             for (String wordToCompare : words) {
-
+                operations++;
                 if (word.equals(wordToCompare)) {
+                    operations++;
                     wordMatches++;
                 }
-                operations++;
             }
 
             if (wordMatches > maxMatches) {
+                operations++;
                 maxMatches = wordMatches;
                 wordMoreMatched = word;
             }
-            operations++;
-
             wordMatches = 0;
         }
 
-        logger.log(Level.INFO, "Total Operations => {0}", Integer.toString(operations));
+        logger.log(Level.INFO, "Total Operations => {0}", Long.toString(operations));
         return wordMoreMatched;
     }
 
