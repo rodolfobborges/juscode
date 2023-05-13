@@ -1,11 +1,10 @@
 package complexity;
 
-import java.util.Arrays;
 
 public class NonRepeatedCharacter {
 
     /**
-     * given a String this function should return the first non repeated character
+     * given a String this function should return the first non-repeated character
      * Example: if "rodolfo borges" then should return 'd'
      */
     public char getFirstNonRepeatedCharacter(String input) {
