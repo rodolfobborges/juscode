@@ -47,9 +47,9 @@ public class CollectorsPlay {
                         .map(Tag::getName)
                         .collect(Collectors.joining(", ")));
 
-        Long moreThanOneWordCount = Arrays.stream(allTags)
-                .filter(tag -> tag.getName().split(" ").length > 1 )
-                .collect(Collectors.counting());
+        long moreThanOneWordCount = Arrays.stream(allTags)
+                .filter(tag -> tag.getName().split(" ").length > 1)
+                .count();
 
         System.out.println("Count tags with more than one word: " + moreThanOneWordCount);
 

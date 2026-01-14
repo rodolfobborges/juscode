@@ -67,7 +67,7 @@ public class Challenge {
                 .collect(Collectors.toList());
 
         System.out.println("Peoples names:");
-        System.out.println(names.stream().collect(Collectors.joining(", ")));
+        System.out.println(String.join(", ", names));
 
         // TIP: the following line does the same as above
         System.out.println(String.join(", ", names));
@@ -84,7 +84,7 @@ public class Challenge {
         // 3 - get the sum off all employees salaries
         float sum = Arrays.stream(employeesArr)
                 .map(employee -> employee.salary)
-                .reduce(0f, (acc, x) -> acc + x);
+                .reduce(0f, Float::sum);
 
         System.out.println("Total spent with employees: " + sum);
 
@@ -116,14 +116,14 @@ public class Challenge {
                                                 .reduce(0f, (acc, salary) -> (acc + salary)/entry.getValue().size())
                         ));
 
-        System.out.println("Avarage salary per job title: \n" + employeesPerJobTitle);
+        System.out.println("Average salary per job title: \n" + employeesPerJobTitle);
 
         // ---
         // 6 - get persons names for age less than 30
         String belowThirty = Arrays.stream(peopleArr)
                 .filter(person -> person.age < 30)
                 .map(person -> person.name)
-                .collect(Collectors.joining(", ")).toString();
+                .collect(Collectors.joining(", "));
 
         System.out.println("Persons below 30: " + belowThirty);
 
